@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avnish Raj — Full Stack Developer &amp; Creative Technologist</title>
+  <meta name="description"
+    content="Portfolio of Avnish Raj — Full Stack Developer, Creative Technologist, and B.Tech CS student. Crafting robust code and captivating visuals." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">AR<span class="accent-dot">.</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#creative">Creative</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO SECTION ═══════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="assets/hero-bg.png" alt="" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-particles" id="hero-particles"></div>
+    <div class="hero-content reveal">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Avnish <span class="gradient-text">Raj</span></h1>
+      <p class="hero-tagline">Full Stack Developer <span class="sep">|</span> Creative Technologist <span
+          class="sep">|</span> B.Tech CS Student</p>
+      <p class="hero-message">Crafting robust code and captivating visuals.</p>
+      <a href="#projects" class="cta-btn">
+        <span>Explore My Work</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+      <div class="hero-socials">
+        <a href="https://github.com/AvnishR4j" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        </a>
+        <a href="https://instagram.com/avniiisssshhhhh" target="_blank" rel="noopener" aria-label="Instagram"
+          class="social-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT SECTION ═══════════════════ -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">01 — About</span>
+        <h2 class="section-title">Who I <span class="gradient-text">Am</span></h2>
+      </div>
+      <div class="about-grid reveal">
+        <div class="about-text">
+          <p>Currently a 4th-semester <strong>B.Tech Computer Science</strong> student, I am driven by the fascinating
+            interplay between logical systems and creative
+            expression.</p>
+          <p>My journey involves not just architecting robust solutions in <span class="accent-cyan">C++</span> and
+            <span class="accent-cyan">Operating Systems</span>, but also capturing cinematic narratives through <span
+              class="accent-violet">photography</span> and giving form to imagination through <span
+              class="accent-violet">sketching</span>.
+          </p>
+          <p>I believe true innovation lies at the intersection of diverse disciplines.</p>
+          <div class="about-highlight">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <div>
+              <strong>Campus Life</strong>
+              <p>Active participant in <span class="accent-cyan">URJA Fest</span> and various tech & cultural events at
+                my university.</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <span class="stat-number" data-target="5">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">Projects Built</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">Technologies</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="2">0</span>
+            <span class="stat-label">Creative Domains</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number" data-target="4">0</span><span class="stat-plus">th</span>
+            <span class="stat-label">Semester</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECTS SECTION ═══════════════════ -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">02 — Projects</span>
+        <h2 class="section-title">The Dev <span class="gradient-text">Lab</span></h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="project-card reveal" data-tilt>
+          <div class="project-card-inner">
+            <div class="project-number">01</div>
+            <h3 class="project-title">Lost &amp; Found</h3>
+            <p class="project-desc">A full-stack application for college campus item recovery.</p>
+            <div class="project-tech">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Firebase</span>
+            </div>
+            <a href="https://github.com/AvnishR4j/Lost-Found" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-tilt>
+          <div class="project-card-inner">
+            <div class="project-number">02</div>
+            <h3 class="project-title">Air Canvas Fun Game</h3>
+            <p class="project-desc">Real-time gesture-based drawing tool utilizing computer vision.</p>
+            <div class="project-tech">
+              <span>Python</span><span>OpenCV</span>
+            </div>
+            <a href="https://github.com/AvnishR4j/Air-Canvas-Fun-Game" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-tilt>
+          <div class="project-card-inner">
+            <div class="project-number">03</div>
+            <h3 class="project-title">Habit-Tracker</h3>
+            <p class="project-desc">Focuses on building a streak and keeping it going.</p>
+            <div class="project-tech">
+              <span>Python</span><span>OpenCV</span>
+            </div>
+            <a href="https://github.com/AvnishR4j/Habit-Tracker" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+                <div class="project-card reveal" data-tilt>
+          <div class="project-card-inner">
+            <div class="project-number">04</div>
+            <h3 class="project-title">Cafe Website</h3>
+            <p class="project-desc">Elevating the everyday coffee experience through exquisite tastes, minimalist design, and uncompromised quality.</p>
+            <div class="project-tech">
+              <span>Python</span><span>OpenCV</span>
+            </div>
+            <a href="https://github.com/AvnishR4j/Cafe-Website" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-tilt>
+          <div class="project-card-inner">
+            <div class="project-number">05</div>
+            <h3 class="project-title">Spotify Clone</h3>
+            <p class="project-desc">Frontend replica showcasing responsive design and UI/UX skills.</p>
+            <div class="project-tech">
+              <span>HTML</span><span>CSS</span>
+            </div>
+            <a href="https://github.com/AvnishR4j/Spotify-Clone" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-tilt>
+          <div class="project-card-inner">
+            <div class="project-number">06</div>
+            <h3 class="project-title">Flipkart Clone</h3>
+            <p class="project-desc">E-commerce UI clone demonstrating robust frontend architecture.</p>
+            <div class="project-tech">
+              <span>HTML</span><span>CSS</span>
+            </div>
+            <a href="https://github.com/AvnishR4j/Flipkart-clone" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card reveal" data-tilt>
+          <div class="project-card-inner">
+            <div class="project-number">07</div>
+            <h3 class="project-title">Transport Booking</h3>
+            <p class="project-desc">Route checking and booking application with interactive UI.</p>
+            <div class="project-tech">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+            <a href="https://github.com/AvnishR4j/Transport-Booking-New" target="_blank" rel="noopener" class="project-link">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CREATIVE STUDIO ═══════════════════ -->
+  <section class="section creative" id="creative">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">03 — Gallery</span>
+        <h2 class="section-title">The Creative Studio: <span class="gradient-text">Logic &amp; Light</span></h2>
+      </div>
+
+      <div class="tabs reveal">
+        <button class="tab-btn active" data-tab="photography">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+            <circle cx="12" cy="13" r="4" />
+          </svg>
+          Through My Lens
+        </button>
+        <button class="tab-btn" data-tab="sketches">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19l7-7 3 3-7 7-3-3z" />
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+            <path d="M2 2l7.586 7.586" />
+            <circle cx="11" cy="11" r="2" />
+          </svg>
+          The Sketchbook
+        </button>
+      </div>
+
+      <div class="tab-content active" id="tab-photography">
+        <div class="masonry-grid">
+          <div class="gallery-item reveal">
+            <img src="assets/photography/golden-light.jpg" alt="Golden Light" loading="lazy" />
+            <div class="gallery-caption">Golden Light</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/night-owl.jpg" alt="Night Owl" loading="lazy" />
+            <div class="gallery-caption">Night Owl</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/petal-poise.jpg" alt="Petal Poise" loading="lazy" />
+            <div class="gallery-caption">Petal Poise</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/purple-lightning.jpg" alt="Purple Lightning" loading="lazy" />
+            <div class="gallery-caption">Purple Lightning</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/misty-night.jpg" alt="Misty Night" loading="lazy" />
+            <div class="gallery-caption">Misty Night</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/campus-atrium.jpg" alt="Campus Atrium" loading="lazy" />
+            <div class="gallery-caption">Campus Atrium</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/perched.jpg" alt="Perched" loading="lazy" />
+            <div class="gallery-caption">Perched</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/leaf-macro.jpg" alt="Leaf Macro" loading="lazy" />
+            <div class="gallery-caption">Leaf Macro</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/industrial-silhouette.jpg" alt="Industrial Silhouette" loading="lazy" />
+            <div class="gallery-caption">Industrial Silhouette</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/leaf-insect.jpg" alt="Leaf Insect" loading="lazy" />
+            <div class="gallery-caption">Leaf Insect</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/green-storm.jpg" alt="Green Storm" loading="lazy" />
+            <div class="gallery-caption">Green Storm</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/dried-roses.jpg" alt="Dried Roses" loading="lazy" />
+            <div class="gallery-caption">Dried Roses</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/foggy-morning.jpg" alt="Foggy Morning" loading="lazy" />
+            <div class="gallery-caption">Foggy Morning</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/photography/curious-squirrel.jpg" alt="Curious Squirrel" loading="lazy" />
+            <div class="gallery-caption">Curious Squirrel</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-sketches">
+        <div class="masonry-grid">
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/blue-eyed-portrait.jpg" alt="Blue-Eyed Portrait" loading="lazy" />
+            <div class="gallery-caption">Blue-Eyed Portrait</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/crowned-warrior.jpg" alt="Crowned Warrior" loading="lazy" />
+            <div class="gallery-caption">Crowned Warrior</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/joker-grin.jpg" alt="Joker Grin" loading="lazy" />
+            <div class="gallery-caption">Joker Grin</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/charcoal-gaze.jpg" alt="Charcoal Gaze" loading="lazy" />
+            <div class="gallery-caption">Charcoal Gaze</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/moon-knight.jpg" alt="Moon Knight" loading="lazy" />
+            <div class="gallery-caption">Moon Knight</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/hand-study.jpg" alt="Hand Study" loading="lazy" />
+            <div class="gallery-caption">Hand Study</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/vegito.jpg" alt="Vegito" loading="lazy" />
+            <div class="gallery-caption">Vegito</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/shiva.jpg" alt="Shiva" loading="lazy" />
+            <div class="gallery-caption">Shiva</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/thanos.jpg" alt="Thanos" loading="lazy" />
+            <div class="gallery-caption">Thanos</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/anime-scarf.jpg" alt="Anime Scarf" loading="lazy" />
+            <div class="gallery-caption">Anime Scarf</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/goku-action.jpg" alt="Goku Action" loading="lazy" />
+            <div class="gallery-caption">Goku Action</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/wile-e-coyote.jpg" alt="Wile E. Coyote" loading="lazy" />
+            <div class="gallery-caption">Wile E. Coyote</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/titan-scream.jpg" alt="Titan Scream" loading="lazy" />
+            <div class="gallery-caption">Titan Scream</div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="assets/sketches/phantom-reach.jpg" alt="Phantom Reach" loading="lazy" />
+            <div class="gallery-caption">Phantom Reach</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SKILLS SECTION ═══════════════════ -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">04 — Skills</span>
+        <h2 class="section-title">Skills <span class="gradient-text">Matrix</span></h2>
+      </div>
+      <div class="skills-wrapper reveal">
+        <div class="skills-category">
+          <h3 class="skills-cat-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00FFFF" stroke-width="2">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            Languages &amp; Core
+          </h3>
+          <div class="skills-list">
+            <div class="skill-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+              C++
+            </div>
+            <div class="skill-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+              </svg>
+              SQL
+            </div>
+            <div class="skill-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+              Operating Systems
+            </div>
+            <div class="skill-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+              </svg>
+              DBMS
+            </div>
+            <div class="skill-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 17l6-6-6-6" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+              Python
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3 class="skills-cat-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00FFFF" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="3" y1="9" x2="21" y2="9" />
+              <line x1="9" y1="21" x2="9" y2="9" />
+            </svg>
+            Web &amp; Tools
+          </h3>
+          <div class="skills-list">
+            <div class="skill-chip">HTML5</div>
+            <div class="skill-chip">CSS3</div>
+            <div class="skill-chip">JavaScript</div>
+            <div class="skill-chip">Git / GitHub</div>
+            <div class="skill-chip">VS Code</div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3 class="skills-cat-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A2BE2" stroke-width="2">
+              <path d="M12 19l7-7 3 3-7 7-3-3z" />
+              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+            </svg>
+            Creative
+          </h3>
+          <div class="skills-list">
+            <div class="skill-chip creative-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+                <circle cx="12" cy="13" r="4" />
+              </svg>
+              Photography
+            </div>
+            <div class="skill-chip creative-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+              </svg>
+              Sketching
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT SECTION ═══════════════════ -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">05 — Contact</span>
+        <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+        <p class="section-subtitle">Have a project in mind, or just want to say hello? I'd love to hear from you.</p>
+      </div>
+      <div class="contact-grid reveal">
+        <a href="mailto:avnish9569@gmail.com" class="contact-card shimmer-link">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">avnish9569@gmail.com</span>
+        </a>
+        <a href="https://github.com/AvnishR4j" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+          </div>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">AvnishR4j</span>
+        </a>
+        <a href="https://instagram.com/avniiisssshhhhh" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg>
+          </div>
+          <span class="contact-label">Instagram</span>
+          <span class="contact-value">@avniiisssshhhhh</span>
+        </a>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-logo">AR<span class="accent-dot">.</span></p>
+        <p class="footer-copy">&copy; 2026 Avnish Raj. Designed &amp; Built with passion.</p>
+        <div class="footer-links">
+          <a href="https://github.com/AvnishR4j" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://instagram.com/avniiisssshhhhh" target="_blank" rel="noopener">Instagram</a>
+          <a href="mailto:avnish9569@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
