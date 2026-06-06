@@ -4,10 +4,19 @@
    ═══════════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    // Keep the rendered page recruiter-first while retaining the creative section markup.
+    const skillsSection = document.getElementById('skills');
+    const creativeSection = document.getElementById('creative');
+    if (skillsSection && creativeSection) {
+        skillsSection.after(creativeSection);
+    }
 
     // ─── PARTICLES ───
     const particlesContainer = document.getElementById('hero-particles');
-    if (particlesContainer) {
+    if (particlesContainer && !reducedMotion) {
         for (let i = 0; i < 40; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
@@ -41,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navLinks.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', String(navLinks.classList.contains('open')));
     });
 
     // Close menu on link click
@@ -48,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
         });
     });
 
@@ -71,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── 3D TILT ON PROJECT CARDS ───
     const tiltCards = document.querySelectorAll('[data-tilt]');
 
-    tiltCards.forEach(card => {
+    if (hasFinePointer && !reducedMotion) tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -101,22 +112,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
-
-            tabBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-                if (content.id === `tab-${targetTab}`) {
-                    content.classList.add('active');
-                    // Re-trigger reveal for newly visible items
-                    content.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-                        revealObserver.observe(el);
-                    });
-                }
-            });
+            activateTab(btn);
         });
+
+        btn.addEventListener('keydown', (event) => {
+            if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+            event.preventDefault();
+            const currentIndex = [...tabBtns].indexOf(btn);
+            const offset = event.key === 'ArrowRight' ? 1 : -1;
+            const nextButton = tabBtns[(currentIndex + offset + tabBtns.length) % tabBtns.length];
+            nextButton.focus();
+            activateTab(nextButton);
+        });
+    });
+
+    function activateTab(btn) {
+        const targetTab = btn.getAttribute('data-tab');
+
+        tabBtns.forEach(b => {
+            const isActive = b === btn;
+            b.classList.toggle('active', isActive);
+            b.setAttribute('aria-selected', String(isActive));
+        });
+
+        tabContents.forEach(content => {
+            const isActive = content.id === `tab-${targetTab}`;
+            content.classList.toggle('active', isActive);
+            content.hidden = !isActive;
+            if (isActive) {
+                content.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+            }
+        });
+    }
+
+    tabContents.forEach(content => {
+        content.hidden = !content.classList.contains('active');
     });
 
     // ─── COUNTER ANIMATION ───
