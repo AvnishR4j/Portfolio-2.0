@@ -222,20 +222,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initHeroInkReveal(reducedMotion) {
     const canvas = document.getElementById('hero-ink-canvas');
+    const hero = canvas?.closest('.hero');
     const heroBg = canvas?.closest('.hero-bg');
-    if (!canvas || !heroBg) return;
+    if (!canvas || !hero || !heroBg) return;
 
     if (reducedMotion) {
-        heroBg.classList.add('ink-fallback');
+        canvas.hidden = true;
         return;
     }
 
-    heroBg.classList.add('ink-loading');
-
     const ctx = canvas.getContext('2d');
     if (!ctx) {
-        heroBg.classList.remove('ink-loading');
-        heroBg.classList.add('ink-fallback');
+        canvas.hidden = true;
         return;
     }
 
@@ -247,44 +245,77 @@ function initHeroInkReveal(reducedMotion) {
     const maskCtx = maskCanvas.getContext('2d');
     const imageCanvas = document.createElement('canvas');
     const imageCtx = imageCanvas.getContext('2d');
-    if (!maskCtx || !imageCtx) {
-        heroBg.classList.remove('ink-loading');
-        heroBg.classList.add('ink-fallback');
+    const revealedCanvas = document.createElement('canvas');
+    const revealedCtx = revealedCanvas.getContext('2d');
+    if (!maskCtx || !imageCtx || !revealedCtx) {
+        canvas.hidden = true;
         return;
     }
 
     let width = 0;
     let height = 0;
-    let animationFrame = 0;
-    let animationStart = 0;
-    let isComplete = false;
-    const duration = 3400;
-
-    const blobs = [
-        { x: 0.52, y: 0.24, r: 0.2, start: 0.02, span: 0.38, seed: 1.7 },
-        { x: 0.46, y: 0.38, r: 0.27, start: 0.1, span: 0.42, seed: 4.4 },
-        { x: 0.6, y: 0.4, r: 0.29, start: 0.16, span: 0.42, seed: 7.1 },
-        { x: 0.42, y: 0.58, r: 0.34, start: 0.24, span: 0.46, seed: 2.9 },
-        { x: 0.62, y: 0.64, r: 0.34, start: 0.3, span: 0.44, seed: 9.8 },
-        { x: 0.52, y: 0.5, r: 0.78, start: 0.56, span: 0.36, seed: 3.2 }
-    ];
+    let animationFrame = null;
+    let lastTime = 0;
+    let hasDrawnPortrait = false;
+    const hasHoverPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 768;
+    const pointer = {
+        x: 0.55,
+        y: 0.48,
+        targetX: 0.55,
+        targetY: 0.48,
+        strength: 0,
+        targetStrength: hasHoverPointer ? 0 : 0.58,
+        touchedAt: 0
+    };
 
     image.addEventListener('load', () => {
-        heroBg.classList.remove('ink-loading');
         heroBg.classList.add('ink-ready');
         resizeCanvas();
-        animationStart = performance.now();
-        animationFrame = requestAnimationFrame(animate);
+        startAnimation();
     }, { once: true });
 
     image.addEventListener('error', () => {
-        heroBg.classList.remove('ink-loading');
-        heroBg.classList.add('ink-fallback');
+        canvas.hidden = true;
     }, { once: true });
 
     window.addEventListener('resize', () => {
         resizeCanvas();
-        if (isComplete && width && height) drawFrame(1, 0);
+        hasDrawnPortrait = false;
+    }, { passive: true });
+
+    hero.addEventListener('pointerenter', (event) => {
+        if (!hasHoverPointer) return;
+        setPointerFromEvent(event);
+        pointer.targetStrength = 0.95;
+        startAnimation();
+    });
+
+    hero.addEventListener('pointermove', (event) => {
+        if (!hasHoverPointer) return;
+        setPointerFromEvent(event);
+        pointer.targetStrength = 0.95;
+    }, { passive: true });
+
+    hero.addEventListener('pointerleave', () => {
+        if (!hasHoverPointer) return;
+        pointer.targetStrength = 0;
+    });
+
+    hero.addEventListener('touchstart', (event) => {
+        setPointerFromTouch(event);
+        pointer.targetStrength = 0.95;
+        pointer.touchedAt = performance.now();
+        startAnimation();
+    }, { passive: true });
+
+    hero.addEventListener('touchmove', (event) => {
+        setPointerFromTouch(event);
+        pointer.targetStrength = 0.95;
+        pointer.touchedAt = performance.now();
+    }, { passive: true });
+
+    hero.addEventListener('touchend', () => {
+        pointer.targetStrength = hasHoverPointer ? 0 : 0.52;
     }, { passive: true });
 
     function resizeCanvas() {
@@ -299,99 +330,125 @@ function initHeroInkReveal(reducedMotion) {
         maskCanvas.height = height;
         imageCanvas.width = width;
         imageCanvas.height = height;
+        revealedCanvas.width = width;
+        revealedCanvas.height = height;
+    }
+
+    function startAnimation() {
+        if (animationFrame !== null) return;
+        lastTime = performance.now();
+        animationFrame = requestAnimationFrame(animate);
     }
 
     function animate(now) {
-        const elapsed = now - animationStart;
-        const progress = Math.min(elapsed / duration, 1);
-        drawFrame(progress, elapsed / 1000);
+        const delta = Math.min((now - lastTime) / 1000, 0.05);
+        lastTime = now;
 
-        if (progress < 1) {
-            animationFrame = requestAnimationFrame(animate);
+        if (!hasHoverPointer && now - pointer.touchedAt > 1200) {
+            pointer.targetX = 0.5 + Math.sin(now / 2300) * 0.16;
+            pointer.targetY = 0.45 + Math.cos(now / 2700) * 0.1;
+            pointer.targetStrength = 0.56 + Math.sin(now / 1800) * 0.08;
+        }
+
+        pointer.x += (pointer.targetX - pointer.x) * Math.min(delta * 12, 1);
+        pointer.y += (pointer.targetY - pointer.y) * Math.min(delta * 12, 1);
+        pointer.strength += (pointer.targetStrength - pointer.strength) * Math.min(delta * 8, 1);
+
+        drawFrame(now / 1000);
+
+        if (hasHoverPointer && pointer.strength < 0.01 && pointer.targetStrength === 0) {
+            ctx.clearRect(0, 0, width, height);
+            animationFrame = null;
             return;
         }
 
-        isComplete = true;
-        heroBg.classList.add('ink-complete');
-        cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(animate);
     }
 
-    function drawFrame(progress, time) {
+    function drawFrame(time) {
         if (!width || !height) return;
 
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = '#050505';
-        ctx.fillRect(0, 0, width, height);
+        if (pointer.strength < 0.01) return;
 
-        imageCtx.clearRect(0, 0, width, height);
-        drawPortraitScene(imageCtx, image, width, height);
+        if (!hasDrawnPortrait) {
+            imageCtx.clearRect(0, 0, width, height);
+            drawPortraitScene(imageCtx, image, width, height);
+            hasDrawnPortrait = true;
+        }
 
         maskCtx.clearRect(0, 0, width, height);
         maskCtx.save();
         maskCtx.filter = `blur(${Math.round(Math.max(width, height) * 0.018)}px)`;
         maskCtx.globalCompositeOperation = 'lighter';
-        blobs.forEach(blob => drawBlob(blob, progress, time));
+        drawHoverInk(time);
         maskCtx.restore();
 
+        revealedCtx.clearRect(0, 0, width, height);
+        revealedCtx.drawImage(imageCanvas, 0, 0);
+        revealedCtx.globalCompositeOperation = 'destination-in';
+        revealedCtx.drawImage(maskCanvas, 0, 0);
+        revealedCtx.globalCompositeOperation = 'source-over';
+
         imageCtx.globalCompositeOperation = 'destination-in';
-        imageCtx.drawImage(maskCanvas, 0, 0);
         imageCtx.globalCompositeOperation = 'source-over';
 
         ctx.save();
-        ctx.globalAlpha = 0.9;
-        ctx.drawImage(imageCanvas, 0, 0);
+        ctx.globalAlpha = Math.min(pointer.strength, 1);
+        ctx.drawImage(revealedCanvas, 0, 0);
+        ctx.restore();
+
+        ctx.save();
         ctx.globalCompositeOperation = 'screen';
-        ctx.globalAlpha = 0.08 * (1 - Math.min(progress, 0.9) / 0.9);
-        ctx.fillStyle = '#00ffff';
-        ctx.fillRect(0, 0, width, height);
+        ctx.globalAlpha = 0.06 * pointer.strength;
+        ctx.drawImage(maskCanvas, 0, 0);
         ctx.restore();
     }
 
-    function drawBlob(blob, progress, time) {
-        const localProgress = clamp((progress - blob.start) / blob.span, 0, 1);
-        if (localProgress <= 0) return;
+    function drawHoverInk(time) {
+        const base = Math.min(width, height);
+        const centerX = pointer.x * width;
+        const centerY = pointer.y * height;
+        const primaryRadius = base * (hasHoverPointer ? 0.24 : 0.34) * (0.72 + pointer.strength * 0.4);
 
-        const eased = easeOutCubic(localProgress);
-        const base = Math.max(width, height);
-        const radius = blob.r * base * eased * (1 + Math.sin(time * 2.1 + blob.seed) * 0.025);
-        const centerX = blob.x * width + Math.sin(time * 1.7 + blob.seed) * radius * 0.035;
-        const centerY = blob.y * height + Math.cos(time * 1.35 + blob.seed) * radius * 0.03;
+        paintRadialInk(centerX, centerY, primaryRadius, 1);
 
-        paintRadialInk(centerX, centerY, radius);
-
-        for (let i = 0; i < 7; i++) {
-            const angle = blob.seed + i * 1.27;
-            const satelliteRadius = radius * (0.18 + (i % 3) * 0.045);
-            const offset = radius * (0.45 + (i % 2) * 0.16);
-            const x = centerX + Math.cos(angle + time * 0.16) * offset;
-            const y = centerY + Math.sin(angle - time * 0.12) * offset * 0.72;
-            paintRadialInk(x, y, satelliteRadius);
+        for (let i = 0; i < 8; i++) {
+            const angle = i * 1.37 + time * (i % 2 ? -0.18 : 0.14);
+            const wobble = Math.sin(time * 1.8 + i) * 0.08;
+            const distance = primaryRadius * (0.34 + (i % 3) * 0.12 + wobble);
+            const radius = primaryRadius * (0.22 + (i % 4) * 0.035);
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance * 0.78;
+            paintRadialInk(x, y, radius, 0.72);
         }
     }
 
-    function paintRadialInk(x, y, radius) {
-        const gradient = maskCtx.createRadialGradient(x, y, 0, x, y, radius);
-        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.98)');
-        gradient.addColorStop(0.56, 'rgba(255, 255, 255, 0.76)');
-        gradient.addColorStop(0.82, 'rgba(255, 255, 255, 0.32)');
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-        maskCtx.fillStyle = gradient;
-        maskCtx.beginPath();
-        maskCtx.arc(x, y, radius, 0, Math.PI * 2);
-        maskCtx.fill();
+    function setPointerFromEvent(event) {
+        const rect = canvas.getBoundingClientRect();
+        pointer.targetX = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+        pointer.targetY = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+    }
+
+    function setPointerFromTouch(event) {
+        const touch = event.touches[0] || event.changedTouches[0];
+        if (!touch) return;
+        const rect = canvas.getBoundingClientRect();
+        pointer.targetX = clamp((touch.clientX - rect.left) / rect.width, 0, 1);
+        pointer.targetY = clamp((touch.clientY - rect.top) / rect.height, 0, 1);
     }
 
     function drawPortraitScene(targetCtx, sourceImage, targetWidth, targetHeight) {
         targetCtx.save();
-        targetCtx.globalAlpha = 0.48;
-        targetCtx.filter = `blur(${Math.round(Math.max(targetWidth, targetHeight) * 0.022)}px) brightness(0.62) saturate(1.12)`;
+        targetCtx.globalAlpha = 0.52;
+        targetCtx.filter = `blur(${Math.round(Math.max(targetWidth, targetHeight) * 0.022)}px) brightness(0.64) saturate(1.12)`;
         drawCoverImage(targetCtx, sourceImage, targetWidth, targetHeight, 0.5, 0.42);
         targetCtx.restore();
 
         const frame = getPortraitFrame(sourceImage, targetWidth, targetHeight);
         targetCtx.save();
-        targetCtx.globalAlpha = 0.92;
-        targetCtx.filter = 'brightness(0.88) saturate(1.08) contrast(1.04)';
+        targetCtx.globalAlpha = 0.96;
+        targetCtx.filter = 'brightness(0.94) saturate(1.08) contrast(1.04)';
         targetCtx.shadowColor = 'rgba(0, 0, 0, 0.72)';
         targetCtx.shadowBlur = Math.max(targetWidth, targetHeight) * 0.035;
         targetCtx.drawImage(sourceImage, frame.x, frame.y, frame.width, frame.height);
@@ -402,7 +459,7 @@ function initHeroInkReveal(reducedMotion) {
         const targetRatio = targetWidth / targetHeight;
         const imageRatio = sourceImage.naturalWidth / sourceImage.naturalHeight;
         const isTallViewport = targetRatio < 0.75;
-        const portraitHeight = targetHeight * (isTallViewport ? 1.06 : 1.18);
+        const portraitHeight = targetHeight * (isTallViewport ? 1.07 : 1.2);
         const portraitWidth = portraitHeight * imageRatio;
         const centerX = targetWidth * (isTallViewport ? 0.5 : 0.55);
         const centerY = targetHeight * (isTallViewport ? 0.5 : 0.54);
@@ -413,6 +470,18 @@ function initHeroInkReveal(reducedMotion) {
             width: portraitWidth,
             height: portraitHeight
         };
+    }
+
+    function paintRadialInk(x, y, radius, alpha) {
+        const gradient = maskCtx.createRadialGradient(x, y, 0, x, y, radius);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${0.98 * alpha})`);
+        gradient.addColorStop(0.55, `rgba(255, 255, 255, ${0.76 * alpha})`);
+        gradient.addColorStop(0.82, `rgba(255, 255, 255, ${0.28 * alpha})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        maskCtx.fillStyle = gradient;
+        maskCtx.beginPath();
+        maskCtx.arc(x, y, radius, 0, Math.PI * 2);
+        maskCtx.fill();
     }
 
     function drawCoverImage(targetCtx, sourceImage, targetWidth, targetHeight, focusX = 0.5, focusY = 0.5) {
@@ -434,9 +503,5 @@ function initHeroInkReveal(reducedMotion) {
 
     function clamp(value, min, max) {
         return Math.min(Math.max(value, min), max);
-    }
-
-    function easeOutCubic(value) {
-        return 1 - Math.pow(1 - value, 3);
     }
 }
