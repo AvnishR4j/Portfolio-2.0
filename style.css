@@ -711,72 +711,6 @@ img {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   EDUCATION
-   ═══════════════════════════════════════════════════════════ */
-
-.education-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 36px 40px;
-  background: linear-gradient(135deg, var(--bg-card), rgba(0, 255, 255, 0.04));
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-}
-
-.education-kicker {
-  color: var(--accent-cyan);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-}
-
-.education-card h3 {
-  font-family: var(--font-heading);
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  line-height: 1.3;
-}
-
-.education-degree {
-  color: var(--text-secondary);
-  margin-top: 8px;
-}
-
-.education-meta {
-  display: flex;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-.education-meta div {
-  min-width: 130px;
-  padding: 20px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-color);
-  border-radius: 14px;
-}
-
-.education-meta strong,
-.education-meta span {
-  display: block;
-}
-
-.education-meta strong {
-  color: var(--accent-cyan);
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-}
-
-.education-meta span {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  margin-top: 4px;
-}
-
-/* ═══════════════════════════════════════════════════════════
    PROJECTS
    ═══════════════════════════════════════════════════════════ */
 
@@ -1310,10 +1244,6 @@ img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .education-card {
-    align-items: flex-start;
-    flex-direction: column;
-  }
 }
 
 @media (max-width: 768px) {
@@ -1347,15 +1277,6 @@ img {
 
   .projects-grid {
     grid-template-columns: 1fr;
-  }
-
-  .education-meta {
-    width: 100%;
-  }
-
-  .education-meta div {
-    min-width: 0;
-    flex: 1;
   }
 
   .about-stats {
@@ -1495,16 +1416,6 @@ img {
   .footer-links {
     justify-content: center;
     flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 520px) {
-  .education-card {
-    padding: 26px 22px;
-  }
-
-  .education-meta {
-    flex-direction: column;
   }
 }
 
